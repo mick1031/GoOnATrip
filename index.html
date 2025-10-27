@@ -60,7 +60,11 @@
                         <input type="text" class="form-control v-input" name="capacity" placeholder="三位/不限/已額滿">
                     </div>
                     <div class="form-group">
-                        <label for="url">介紹網址</label>
+                        <label for="transportation">交通方式</label>
+                        <input type="text" class="form-control v-input" name="transportation" placeholder="自行前往">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">參考網站</label>
                         <input type="text" class="form-control v-input" name="url" placeholder="https://www.instagram.com/reel/DB09M22JdtK/?utm_source=ig_web_copy_link">
                     </div>
                     <div class="form-group">
@@ -87,6 +91,7 @@
                 datetime: '2025/11/29 17:30',
                 deadline: '2025-11-15',
                 capacity: '三位/不限/已額滿',
+                transportation: '自行前往',
                 url: 'https://www.instagram.com/reel/DB09M22JdtK/?utm_source=ig_web_copy_link',
                 detail:`吃完飯散散步🚶
 離中山很近可以逛街消食
@@ -114,7 +119,8 @@
 報名截止日：${edit.deadline} <br/>
 額滿人數：${edit.capacity} <br/>
 活動地點：${edit.location} <br/>
-介紹網址：<a href="${url}" target="_blank">${url}</a> <br/>
+交通方式：${edit.transportation} <br/>
+參考網站：<a href="${url}" target="_blank">${url}</a> <br/>
 活動細節：<br/>
 ${detail}
 `;
