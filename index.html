@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>只要有空</title>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -12,11 +13,114 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 
-    <!-- CKEditor -->
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 </head>
+
 <body>
-    
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header text-center bg-primary text-white">
+                <h2>揪團</h2>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-header text-center bg-danger text-white">
+                        <h4>聚會規範</h2>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">本群禁止直接在社群上單獨邀約，群內只提供「公開揪團」。</li>
+                        <li class="list-group-item">揪團成行的最低人數不限，若只有兩人報名可自行溝通是否成行。</li>
+                        <li class="list-group-item">揪團必須有記事本公開發文，文字提供詳細時間、地點、活動內容。</li>
+                    </ul>
+                </div>
+                <div class="mt-3">
+                    <div class="form-group">
+                        <label for="title">活動標題</label>
+                        <input type="text" class="form-control v-input" name="title" placeholder="居酒屋 幸ちゃん 吃牛腸鍋">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">活動地點</label>
+                        <input type="text" class="form-control v-input" name="location" placeholder="居酒屋 幸ちゃん ＠ 台北市中山區林森北路145巷15號">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateTime">活動時間</label>
+                        <input type="text" class="form-control v-input" name="dateTime" placeholder="2025/11/29 17:30">
+                    </div>
+                    <div class="form-group">
+                        <label for="deadline">報名截止日</label>
+                        <input type="text" class="form-control v-input" name="deadline" placeholder="2025/11/15">
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">人數上限</label>
+                        <input type="text" class="form-control v-input" name="capacity" placeholder="三位/不限/已額滿">
+                    </div>
+                    <div class="form-group">
+                        <label for="detail">活動細節</label>
+                        <textarea class="form-control v-input" name="detail" rows="5" placeholder="https://www.instagram.com/reel/DB09M22JdtK/?utm_source=ig_web_copy_link
+吃完飯散散步🚶(Wandering)
+離中山很近可以逛街消食"></textarea>
+                    </div>
+                </div>
+                <div class="border rounded p-3 mt-3" style="position: relative;">
+                    <div id="showArea"></div>
+                    <i class="bi bi-copy" id="showAreaCopy" style="cursor: pointer; position: absolute; right: 10px; top: 10px;"></i>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const page = {
+            edit: {
+                title: '居酒屋 幸ちゃん 吃牛腸鍋',
+                location: '居酒屋 幸ちゃん ＠ 台北市中山區林森北路145巷15號',
+                datetime: '2025/11/29 17:30',
+                deadline: '2025/11/15',
+                capacity: '三位/不限/已額滿',
+                detail:`https://www.instagram.com/reel/DB09M22JdtK/?utm_source=ig_web_copy_link
+吃完飯散散步🚶(Wandering)
+離中山很近可以逛街消食
+                `
+            }
+        };
+
+        $('.v-input').on('input', function (e) {
+            const field = $(e.target).attr('name');
+            const value = $(e.target).val();
+            page.edit[field] = value;   
+            render();
+        })
+
+        function render() {
+            const { edit } = page;
+            const detail = edit.detail?.replace(/\n/g, '<br/>') || '';
+            const content = `『${edit.datetime} ${edit.title}』<br/>
+報名截止日：${edit.deadline} <br/>
+額滿人數：${edit.capacity} <br/>
+活動地點：${edit.location} <br/>
+活動細節：<br/>
+${detail}
+`;
+
+            $('#showArea').html(content);
+        }
+
+        $('#showAreaCopy').on('click', function() {
+            const content = $('#showArea').text();
+            navigator.clipboard.writeText(content).then(() => {
+                alert('活動資訊已複製到剪貼簿');
+            });
+        });
+
+        render();
+    </script>
 </body>
+
 </html>
