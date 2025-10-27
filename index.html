@@ -57,7 +57,12 @@
                     </div>
                     <div class="form-group">
                         <label for="capacity">人數上限</label>
-                        <input type="text" class="form-control v-input" name="capacity" placeholder="三位/不限/已額滿">
+                        <input type="text" class="form-control v-input" name="capacity" placeholder="三位/不限/已額滿" list="capacityList">
+                        <datalist id="capacityList">
+                            <option value="三位">
+                            <option value="不限">
+                            <option value="已額滿">
+                        </datalist>
                     </div>
                     <div class="form-group">
                         <label for="transportation">交通方式</label>
