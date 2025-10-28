@@ -49,7 +49,10 @@
                     </div>
                     <div class="form-group">
                         <label for="dateTime">活動時間</label>
-                        <input type="datetime-local" class="form-control v-input" name="dateTime" placeholder="2025/11/29 17:30">
+                        <div class="d-flex">
+                            <input type="date" class="form-control v-input" name="date">
+                            <input type="time" class="form-control v-input ml-2" name="time" >
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="deadline">報名截止日</label>
@@ -57,11 +60,20 @@
                     </div>
                     <div class="form-group">
                         <label for="capacity">人數上限</label>
-                        <input type="text" class="form-control v-input" name="capacity" placeholder="三位/不限/已額滿" list="capacityList">
+                        <input type="text" class="form-control v-input" name="capacity" placeholder="3位/不限/已額滿" list="capacityList">
                         <datalist id="capacityList">
-                            <option value="三位">
-                            <option value="不限">
-                            <option value="已額滿">
+                            <option value="1位"></option>
+                            <option value="2位"></option>
+                            <option value="3位"></option>
+                            <option value="4位"></option>
+                            <option value="5位"></option>
+                            <option value="6位"></option>
+                            <option value="7位"></option>
+                            <option value="8位"></option>
+                            <option value="9位"></option>
+                            <option value="10位"></option>
+                            <option value="不限"></option>
+                            <option value="已額滿"></option>
                         </datalist>
                     </div>
                     <div class="form-group">
@@ -91,16 +103,15 @@
     <script>
         const page = {
             edit: {
-                title: '居酒屋 幸ちゃん 吃牛腸鍋',
-                location: '居酒屋 幸ちゃん ＠ 台北市中山區林森北路145巷15號',
-                datetime: '2025/11/29 17:30',
-                deadline: '2025-11-15',
-                capacity: '三位/不限/已額滿',
-                transportation: '自行前往',
-                url: 'https://www.instagram.com/reel/DB09M22JdtK/?utm_source=ig_web_copy_link',
-                detail:`吃完飯散散步🚶
-離中山很近可以逛街消食
-                `
+                title: '',
+                location: '',
+                date: '',
+                time: '',
+                deadline: '',
+                capacity: '',
+                transportation: '',
+                url: '',
+                detail: '',
             }
         };
 
@@ -120,7 +131,7 @@
                 url = 'https://' + url;
             }
 
-            const content = `『${edit.datetime} ${edit.title}』<br/>
+            const content = `『${edit.date} ${edit.time} ${edit.title}』<br/>
 報名截止日：${edit.deadline} <br/>
 額滿人數：${edit.capacity} <br/>
 活動地點：${edit.location} <br/>
